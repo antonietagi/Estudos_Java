@@ -1,0 +1,21 @@
+import java.util.Map;
+import java.util.HashMap;
+
+public class TesteMap {
+  public static void main (String[] args) {
+    Map<String, Integer> mapa = new HashMap<>();
+    
+    mapa.put("Giovanna", 20);
+    mapa.put("Guilherme", 24);
+    mapa.put("Alaska", 3);
+    
+    //percorrendo o map
+    for (Map.Entry<String, Integer> entry : mapa.entrySet()) {
+      String chave = entry.getKey();
+      Integer valor = entry.getValue();
+      
+      System.out.println("Chave: " + chave + " e " + " Valor: " + valor);
+    }
+  }
+}
+
