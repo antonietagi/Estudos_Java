@@ -1,0 +1,57 @@
+import java.util.*;
+
+class StudentGrades {
+  Map<Integer, Double> registrationToGradeMap = new HashMap<>();
+  
+  public void addStudentGrade(Integer registration, Double grade) {
+    if (registrationToGradeMap.containsKey(registration)) {
+      System.out.println("Matricula feita");
+    } else {
+      registrationToGradeMap.put(registration, grade);
+    }
+  }
+  
+  public Double getStudentGrade(Integer registration) {
+    if (registrationToGradeMap.containsKey(registration)) {
+      return registrationToGradeMap.get(registration);
+    } else {
+      return null;
+    }
+  }
+  
+  public Integer getApprovedStudent() {
+    int count = 0;
+    
+    for (Double grade : registrationToGradeMap.values()) {
+      if (grade >= 7) {
+        count++;
+      }
+    }
+    
+    return count;
+  }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        // cria o objeto que gerencia as notas
+        StudentGrades students = new StudentGrades();
+
+        // adicionando alunos (matrícula, nota)
+        students.addStudentGrade(101, 8.5);
+        students.addStudentGrade(102, 6.0);
+        students.addStudentGrade(103, 9.0);
+
+        // tentando adicionar um aluno já existente
+        students.addStudentGrade(101, 7.0);
+
+        // buscando a nota de um aluno específico
+        Double grade = students.getStudentGrade(102);
+        System.out.println("Nota do aluno 102: " + grade);
+
+        // imprimindo quantidade de alunos aprovados
+        System.out.println("Quantidade de alunos aprovados: "
+                + students.getApprovedStudent());
+    }
+}
