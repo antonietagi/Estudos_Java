@@ -1,0 +1,60 @@
+import java.util.*;
+
+class ProductInventory {
+  Map<Integer, Integer> productMap = new HashMap<>();
+  
+  public void addProduct(Integer code, Integer quantity) {
+    if (productMap.containsKey(code)) {
+      System.out.println("Já está cadastrado");
+    } else {
+      productMap.put(code, quantity);//add chave valor
+    }
+  }
+  
+  public void updateProductQuantity(Integer code, Integer quantity) {
+    if (productMap.containsKey(code)) {
+      productMap.put(code, quantity); //insere ou atualiza
+    } else {
+      System.out.println("Produto não encontrado");
+    }
+  }
+  
+  public Integer getProductQuantity(Integer code) {
+    if (productMap.containsKey(code)) {
+      return productMap.get(code);
+    } else {
+      return -1;
+    }
+  }
+  
+  public Integer getOutOfStock() {
+    int count = 0;
+    for (int prod : productMap.values()) {
+      if (prod == 0) {
+        count++;
+      }
+    }
+    return count;
+  }
+}
+
+public class Main {
+  public static void main(String[] args) {
+    ProductInventory pi = new ProductInventory();
+    
+    pi.addProduct(1, 5);
+    pi.addProduct(2, 9);
+    pi.addProduct(3, 0);
+    
+    pi.updateProductQuantity(2, 30);
+    
+    System.out.println("Quantidade do produto 101: "
+                + pi.getProductQuantity(1));
+                
+    System.out.println("Produtos sem estoque "
+                + pi.getOutOfStock());
+    
+    
+    
+  }
+}
